@@ -8,4 +8,4 @@
 - [ ] Dodanie multimediów
 
 > [!IMPORTANT]
-> Strona jest tworzona w celach treningowych, nie estetycznych
+> Stworzone z pomocą sztucznej inteligencji
