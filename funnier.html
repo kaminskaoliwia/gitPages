@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Pet Rock</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #eeeeee;
+            text-align: center;
+            padding: 50px;
+            color: #333;
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #8e44ad;
+            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        #rock-container {
+            margin-top: 50px;
+        }
+
+        #rock {
+            width: 150px;
+            height: 150px;
+            background-color: #7f8c8d;
+            border-radius: 50%;
+            margin: 0 auto;
+            display: block;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            font-size: 20px;
+            padding: 20px 40px;
+            background-color: #8e44ad;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+            transition: transform 0.2s ease;
+        }
+
+        .btn:hover {
+            transform: scale(1.1);
+            background-color: #7f3b8e;
+        }
+
+        #response {
+            font-size: 1.5em;
+            color: #2c3e50;
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #ecf0f1;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            min-height: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Your Virtual Pet Rock</h1>
+    <p>Welcome to your very own pet rock! You can interact with it by giving commands. Let's see what your rock has to say!</p>
+
+    <div id="rock-container">
+        <div id="rock"></div>
+    </div>
+
+    <button class="btn" onclick="giveCommand()">Talk to Your Rock!</button>
+
+    <div id="response"></div>
+
+    <script>
+        const responses = [
+            "Rock is thinking... Actually, it’s just sitting there. It’s a rock.",
+            "Your rock says: 'I am living my best life. Just chilling.'",
+            "Rock: 'I have no opinions. I am a rock.'",
+            "Your rock asks: 'Is it time for a nap yet?'",
+            "Rock is meditating... or maybe it’s just asleep.",
+            "Your rock wonders if it will ever be a pet unicorn instead.",
+            "Rock says: 'I am made of rock. I am invincible. And also very still.'",
+            "Your rock tried to roll away, but then it remembered... it’s a rock.",
+            "Your rock doesn't want to talk. It is deep in thought. Very deep. Like, 10 feet deep."
+        ];
+
+        function giveCommand() {
+            const randomIndex = Math.floor(Math.random() * responses.length);
+            const response = responses[randomIndex];
+            document.getElementById('response').innerText = response;
+        }
+    </script>
+
+	<br>
+	<a href = "index1.html" class="btn">Go back</a>
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Random Fun Zone</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            text-align: center;
+            padding: 50px;
+        }
+
+        h1 {
+            color: #ff6f61;
+            font-size: 3em;
+            margin-bottom: 30px;
+        }
+
+        .button-container {
+            margin-top: 50px;
+        }
+
+        .btn {
+            font-size: 24px;
+            padding: 20px 40px;
+            background-color: #ff6f61;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease;
+        }
+
+        .btn:hover {
+            transform: scale(1.1);
+            background-color: #ff3b2f;
+        }
+
+        #output {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-size: 20px;
+            min-height: 50px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Welcome to the Super Random Fun Zone!</h1>
+    <p>Click the button below to get your dose of random awesomeness!</p>
+
+    <div class="button-container">
+        <button class="btn" onclick="generateRandom()">Press Me for Random Awesomeness!</button>
+    </div>
+
+    <div id="output"></div>
+
+    <script>
+        const randomResults = [
+            "A potato wearing a top hat is now your best friend.",
+            "An alpaca just became the world leader of Mars.",
+            "A unicorn is writing a love letter to a cactus.",
+            "Your shoes are secretly training to become the world's greatest dancers.",
+            "An octopus just started a podcast about human culture.",
+            "A pineapple just asked for your autograph. It's a big deal.",
+            "The moon has started a new trend: wearing socks on its craters.",
+            "Your pet hamster is planning to run for president of the United States.",
+            "The clouds have started making sarcastic comments about your outfit.",
+            "A snail is auditioning for a role in a superhero movie."
+        ];
+
+        function generateRandom() {
+            const randomIndex = Math.floor(Math.random() * randomResults.length);
+            document.getElementById('output').innerText = randomResults[randomIndex];
+        }
+    </script>
+
+	<br>
+	<a href = "index1.html" class="btn">Go back</a>
+
+</body>
+</html>

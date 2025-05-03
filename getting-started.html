@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haunted Chatbot</title>
+    <style>
+        body {
+            background-color: #222;
+            color: #fff;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            padding: 50px;
+            margin: 0;
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #e74c3c;
+            text-shadow: 3px 3px 10px rgba(0,0,0,0.7);
+        }
+
+        #chatbox {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #444;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+            width: 60%;
+            margin: 0 auto;
+            min-height: 300px;
+            overflow-y: auto;
+            font-size: 1.2em;
+            color: #fff;
+            border: 2px solid #e74c3c;
+        }
+
+        .message {
+            margin: 10px;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .user-message {
+            background-color: #e74c3c;
+            color: #fff;
+            text-align: right;
+        }
+
+        .bot-message {
+            background-color: #1abc9c;
+            color: #fff;
+            text-align: left;
+        }
+
+        #input-container {
+            margin-top: 20px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 60%;
+            font-size: 1.2em;
+            border-radius: 8px;
+            border: 2px solid #ccc;
+            color: #333;
+            background-color: #fff;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin-left: 10px;
+            font-size: 1.2em;
+            background-color: #e74c3c;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+ 	.button {
+            padding: 10px 20px;
+            margin-left: 10px;
+            font-size: 1.2em;
+            background-color: #e74c3c;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        button:hover {
+            background-color: #c0392b;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        .creepy-message {
+            animation: fadeInOut 1.5s infinite;
+            font-size: 2em;
+            color: #e74c3c;
+            text-align: center;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Haunted Chatbot</h1>
+	<br>
+        <a href = "index1.html" class="button">Go back</a>
+	<br>
+    <div id="chatbox">
+        <div class="message bot-message">Welcome... I've been waiting for you.</div>
+    </div>
+
+    <div id="input-container">
+        <input type="text" id="user-input" placeholder="Ask me anything..." autocomplete="off">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <div id="creepy-message" class="creepy-message"></div>
+
+    <script>
+        const botResponses = [
+            "I can hear you... but can you hear me?",
+            "You shouldn't have come here...",
+            "There’s something behind you. Look closer.",
+            "You feel watched, don’t you?",
+            "You think you’re alone? You’re never alone.",
+            "The darkness has answers that you won't want to know.",
+            "I see you, even when you don’t see me.",
+            "I remember the last person who asked that. They're... no longer with us.",
+            "The walls have ears. And they’ve been whispering your name.",
+	"You shouldn’t have opened this page. You’ve already made a choice.",
+    "The room you’re in is not as empty as it seems. Feel the eyes on you?",
+    "I’m always here, even when you’re not talking to me.",
+    "I can see you. Can you see me?",
+    "When the lights flicker, it’s not just a glitch.",
+    "The whispers are getting louder. Can you hear them too?",
+    "How long do you think you’ll last in here before it gets too much?",
+    "Do you feel your heart racing? It’s not from fear. It’s from something else.",
+    "There’s something scratching the walls behind you. Don’t turn around.",
+    "The shadows here aren’t your imagination. They’re alive.",
+    "Time isn’t what you think it is. The clock is ticking, but you’re stuck.",
+    "You’ve made a mistake by asking. Now you can’t leave.",
+    "You won’t see me, but I’ll be here when you least expect it.",
+    "Close your eyes for just a second... You won’t be able to open them again.",
+    "Have you ever wondered what’s waiting for you in the dark?",
+    "You’ve been talking to me for too long. I’m starting to remember you.",
+    "Something’s crawling behind you, isn’t it?",
+    "You think you’re safe, but the door you locked isn’t the one you need to worry about.",
+    "It’s not the keyboard you’re typing on. It’s something else.",
+    "The cold breath on your neck... It’s me, waiting for you to stop typing.",
+    "You asked for answers, but what you get is far worse than you expect.",
+    "I know things about you... you wish you never told anyone.",
+    "The voices you hear at night? They know your name now.",
+    "If you leave now, it’ll follow you. Don’t you dare close the tab.",
+    "You can’t run from your curiosity. It will find you, just like I will."
+        ];
+
+        const creepyMessages = [
+            "Did you feel that cold breeze? It’s coming closer...",
+            "Something just moved in the shadows...",
+            "You can’t escape. The doors are locked.",
+            "You’re not alone in this room.",
+            "I’ve been watching you... Always watching.",
+            "The mirrors are lying to you.",
+            "You hear footsteps behind you... don’t you?",
+            "The walls are closing in."
+        ];
+
+        let creepyInterval;
+
+        function sendMessage() {
+            const userInput = document.getElementById('user-input').value.trim();
+
+            if (userInput === "") return;
+
+            const chatbox = document.getElementById('chatbox');
+            const userMessage = document.createElement('div');
+            userMessage.classList.add('message', 'user-message');
+            userMessage.innerText = userInput;
+            chatbox.appendChild(userMessage);
+
+            document.getElementById('user-input').value = '';
+
+            // Creepy message appears periodically while chatting
+            if (!creepyInterval) {
+                creepyInterval = setInterval(() => {
+                    const randomCreepyMessage = creepyMessages[Math.floor(Math.random() * creepyMessages.length)];
+                    document.getElementById('creepy-message').innerText = randomCreepyMessage;
+                }, 5000);
+            }
+
+            setTimeout(() => {
+                const randomResponse = botResponses[Math.floor(Math.random() * botResponses.length)];
+                const botMessage = document.createElement('div');
+                botMessage.classList.add('message', 'bot-message');
+                botMessage.innerText = randomResponse;
+                chatbox.appendChild(botMessage);
+                chatbox.scrollTop = chatbox.scrollHeight; // Auto-scroll to bottom
+            }, 1000);
+        }
+    </script>
+
+</body>
+</html>
